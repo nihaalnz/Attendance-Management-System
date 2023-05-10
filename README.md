@@ -1,6 +1,6 @@
 # Attendance Management System
 
-The Attendance Management System is a C# application built with WinForms using .NET 6 in Visual Studio. It serves as a tool for managing attendance records, tracking student attendance, and generating reports. The application uses MySQL as the database to store and retrieve data. The database creation code can be found in the `populate.py` file in the `populate-db` folder.
+The Attendance Management System is a C# application built with WinForms using .NET 6 in Visual Studio. It serves as a tool for managing attendance records, tracking student attendance, and generating reports. The application uses MySQL as the database to store and retrieve data. The database creation and population code can be found in the `populate.py` file in the `populate-db` folder which requires external libraries to be installed.
 
 
 ## Features
