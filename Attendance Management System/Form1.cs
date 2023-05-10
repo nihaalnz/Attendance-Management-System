@@ -12,6 +12,7 @@ namespace Attendance_Management_System
         private Size formSize;
         public int t_id;
         public bool isAdmin = false;
+        string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
 
         public Form1(int t_id, bool isAdmin)
         {
@@ -41,7 +42,7 @@ namespace Attendance_Management_System
         // Method to update the value of the label with the teachers thats logged in
         private void UpdateTeacherLabel()
         {
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+            
             string query = "SELECT name FROM teachers WHERE id=@t_id";
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
@@ -59,7 +60,6 @@ namespace Attendance_Management_System
         // Method to fetch courses for the teacher and add it to the dropdown in sidebar
         private void CreateCourseMenu()
         {
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
@@ -106,7 +106,6 @@ namespace Attendance_Management_System
         {
 
             DataTable dt = new DataTable();
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
@@ -139,7 +138,7 @@ namespace Attendance_Management_System
             var todayDate = DateTime.Today.ToString("yyyy-MM-dd");
             int totalStudents = dataGridView.Rows.Count;
 
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+
             string query = "INSERT INTO attendance (s_id, `date`, c_id) VALUES (@s_id, @date, @c_id)";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -430,7 +429,7 @@ namespace Attendance_Management_System
         {
 
             DataTable dt = new DataTable();
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+            
             string query = isAdmin ? "SELECT code, name FROM courses;" : "SELECT code, name FROM courses WHERE t_id=@t_id;";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -459,7 +458,7 @@ namespace Attendance_Management_System
         // Method to fill the attendance table fill with data from database
         private void MakeAttendanceTable(DataGridViewCellEventArgs e)
         {
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+            
 
             string name = courseTable.Rows[e.RowIndex].Cells[1].Value.ToString()!;
             string code = courseTable.Rows[e.RowIndex].Cells[0].Value.ToString()!;
@@ -487,7 +486,7 @@ namespace Attendance_Management_System
         // Method to make attendance table based on data from the dropdown
         private void MakeAttendanceTableMenu(object sender, EventArgs e, string code)
         {
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+            
 
             courseLabel.Text = code;
 
@@ -566,7 +565,7 @@ namespace Attendance_Management_System
         // Method to save teacher data in the database
         private void teacherSaveBtn_Click(object sender, EventArgs e)
         {
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+            
             string t_query = "INSERT INTO teachers (`name`) VALUES (@name)";
             string u_query = "INSERT INTO users (t_id, username, password, is_admin) VALUES (@t_id, @username, @password, @isAdmin)";
 
@@ -601,7 +600,7 @@ namespace Attendance_Management_System
         private void saveStudentBtn_Click(object sender, EventArgs e)
         {
             string c_id = coursesDropDown.SelectedValue.ToString()!;
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+            
             string dob = dateOfBirthBox.Value.ToString("yyyy-MM-dd");
             string name = studentNameBox.Text;
 
@@ -630,7 +629,7 @@ namespace Attendance_Management_System
         private void addStudentBtn_Click(object sender, EventArgs e)
         {
             DataTable courses = new DataTable();
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+            
             string query = "SELECT id, code, name FROM courses;";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -653,7 +652,7 @@ namespace Attendance_Management_System
         private void addCourseBtn_Click(object sender, EventArgs e)
         {
             DataTable teachers = new DataTable();
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+            
             string query = "SELECT id, name FROM teachers;";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -682,7 +681,7 @@ namespace Attendance_Management_System
             string t_id = teacherDropDown.SelectedValue.ToString()!;
 
 
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+
             string query = "INSERT INTO courses (code, `name`, c_year, t_id) VALUES (@code, @name, @c_year, @t_id)";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -728,7 +727,7 @@ namespace Attendance_Management_System
             string date = editDateBox.Value.ToString("yyyy-MM-dd");
             label10.Text = $"Edit Attendance ({date} - {code})";
 
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+
             string query = "SELECT students.id AS s_id, students.name, courses.code, IF((SELECT id FROM attendance WHERE s_id=students.id AND c_id=courses.id AND date = @date), True, False) AS attendance FROM courses INNER JOIN students ON courses.id = students.c_id WHERE code=@code;";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -767,7 +766,7 @@ namespace Attendance_Management_System
         // Method to edit the attendance data from the database
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+            
             string a_query = "SELECT id FROM attendance WHERE date=@date AND s_id=@s_id AND c_id=(SELECT id FROM courses WHERE courses.code=@code);";
             string add_query = "INSERT INTO attendance (s_id, `date`, c_id) VALUES (@s_id, @date, ((SELECT id FROM courses WHERE courses.code=@code)));";
             string del_query = "DELETE FROM attendance WHERE date=@date AND s_id=@s_id AND c_id=(SELECT id FROM courses WHERE courses.code=@code);";
@@ -847,7 +846,7 @@ namespace Attendance_Management_System
         {
             string code = courseDGV.Rows[e.RowIndex].Cells["code"].Value.ToString()!;
             Console.WriteLine(code);
-            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
+            
             string query = "SELECT id, name FROM students WHERE c_id=(SELECT id FROM courses WHERE code=@code);";
 
             panelStudents.BringToFront();
