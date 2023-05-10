@@ -866,6 +866,7 @@
             this.courseTable.EnableHeadersVisualStyles = false;
             this.courseTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
             this.courseTable.HeaderBackColor = System.Drawing.Color.DodgerBlue;
+            this.courseTable.HeaderBgColor = System.Drawing.Color.Empty;
             this.courseTable.HeaderForeColor = System.Drawing.Color.White;
             this.courseTable.Location = new System.Drawing.Point(0, 41);
             this.courseTable.MultiSelect = false;
@@ -1135,6 +1136,7 @@
             this.attendanceTable.EnableHeadersVisualStyles = false;
             this.attendanceTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
             this.attendanceTable.HeaderBackColor = System.Drawing.Color.DodgerBlue;
+            this.attendanceTable.HeaderBgColor = System.Drawing.Color.Empty;
             this.attendanceTable.HeaderForeColor = System.Drawing.Color.White;
             this.attendanceTable.Location = new System.Drawing.Point(0, 35);
             this.attendanceTable.Name = "attendanceTable";
@@ -2457,7 +2459,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(547, 41);
             this.label7.TabIndex = 2;
-            this.label7.Text = "Add Student";
+            this.label7.Text = "Add Course";
             // 
             // editPanel
             // 
@@ -2639,6 +2641,7 @@
             this.editCourseTable.EnableHeadersVisualStyles = false;
             this.editCourseTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
             this.editCourseTable.HeaderBackColor = System.Drawing.Color.DodgerBlue;
+            this.editCourseTable.HeaderBgColor = System.Drawing.Color.Empty;
             this.editCourseTable.HeaderForeColor = System.Drawing.Color.White;
             this.editCourseTable.Location = new System.Drawing.Point(0, 41);
             this.editCourseTable.Name = "editCourseTable";
@@ -2814,6 +2817,7 @@
             this.editAttendanceTable.EnableHeadersVisualStyles = false;
             this.editAttendanceTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
             this.editAttendanceTable.HeaderBackColor = System.Drawing.Color.DodgerBlue;
+            this.editAttendanceTable.HeaderBgColor = System.Drawing.Color.Empty;
             this.editAttendanceTable.HeaderForeColor = System.Drawing.Color.White;
             this.editAttendanceTable.Location = new System.Drawing.Point(0, 41);
             this.editAttendanceTable.Name = "editAttendanceTable";
@@ -2895,6 +2899,7 @@
             this.courseDGV.EnableHeadersVisualStyles = false;
             this.courseDGV.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
             this.courseDGV.HeaderBackColor = System.Drawing.Color.DodgerBlue;
+            this.courseDGV.HeaderBgColor = System.Drawing.Color.Empty;
             this.courseDGV.HeaderForeColor = System.Drawing.Color.White;
             this.courseDGV.Location = new System.Drawing.Point(0, 41);
             this.courseDGV.Name = "courseDGV";
@@ -2977,6 +2982,7 @@
             this.studentsTable.EnableHeadersVisualStyles = false;
             this.studentsTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
             this.studentsTable.HeaderBackColor = System.Drawing.Color.DodgerBlue;
+            this.studentsTable.HeaderBgColor = System.Drawing.Color.Empty;
             this.studentsTable.HeaderForeColor = System.Drawing.Color.White;
             this.studentsTable.Location = new System.Drawing.Point(0, 41);
             this.studentsTable.Name = "studentsTable";

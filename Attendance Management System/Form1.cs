@@ -44,6 +44,8 @@ namespace Attendance_Management_System
         {
             
             string query = "SELECT name FROM teachers WHERE id=@t_id";
+
+            string connectionString = "server=127.0.0.1;uid=root;pwd=root;database=attendance";
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
@@ -109,7 +111,10 @@ namespace Attendance_Management_System
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
-                using (MySqlCommand cmd = new MySqlCommand("SELECT students.id, students.name FROM courses INNER JOIN students ON courses.id=students.c_id WHERE courses.id=@c_id;", conn))
+                string CmdText = "SELECT students.id, students.name FROM courses " + 
+                "INNER JOIN students ON courses.id=students.c_id WHERE courses.id=@c_id;";
+
+                using (MySqlCommand cmd = new MySqlCommand(CmdText, conn))
                 {
                     cmd.Parameters.AddWithValue("@c_id", c_id);
                     conn.Open();
@@ -567,7 +572,8 @@ namespace Attendance_Management_System
         {
             
             string t_query = "INSERT INTO teachers (`name`) VALUES (@name)";
-            string u_query = "INSERT INTO users (t_id, username, password, is_admin) VALUES (@t_id, @username, @password, @isAdmin)";
+            string u_query = "INSERT INTO users (t_id, username, password, is_admin)" + 
+                             "VALUES (@t_id, @username, @password, @isAdmin)";
 
             string name = teacherNameBox.Text;
             string username = teacherNameBox.Text.Replace(" ", "").ToLower();
@@ -728,7 +734,10 @@ namespace Attendance_Management_System
             label10.Text = $"Edit Attendance ({date} - {code})";
 
 
-            string query = "SELECT students.id AS s_id, students.name, courses.code, IF((SELECT id FROM attendance WHERE s_id=students.id AND c_id=courses.id AND date = @date), True, False) AS attendance FROM courses INNER JOIN students ON courses.id = students.c_id WHERE code=@code;";
+            string query = "SELECT students.id AS s_id, students.name, courses.code,"
+            + "IF((SELECT id FROM attendance WHERE s_id=students.id AND c_id=courses.id AND date = @date)," 
+            + "True, False) AS attendance FROM courses INNER JOIN students ON courses.id = students.c_id" 
+            + "WHERE code=@code;";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
